@@ -1,0 +1,14 @@
+venv/
+__pycache__/
+*.pyc
+.env
+
+# the three working folders of appendix B stay empty in the repository
+data/*
+work/*
+out/*
+!data/.gitkeep
+!work/.gitkeep
+!out/.gitkeep
+
+.ipynb_checkpoints/
