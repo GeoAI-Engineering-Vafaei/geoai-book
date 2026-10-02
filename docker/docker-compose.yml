@@ -1,0 +1,19 @@
+services:
+  db:
+    # PostgreSQL 16 + PostGIS 3.4 on Alpine, roughly 150 MB
+    image: postgis/postgis:16-3.4-alpine
+    environment:
+      POSTGRES_DB: geoai_db
+      POSTGRES_PASSWORD: ${DB_PASSWORD}    # read from the .env file
+    volumes:
+      - db_data:/var/lib/postgresql/data   # persist the data
+  api:
+    build: .                               # build from our Dockerfile
+    ports:
+      - "8000:8000"
+    env_file: .env
+    depends_on:
+      - db                                 # start the database first
+
+volumes:
+  db_data:
